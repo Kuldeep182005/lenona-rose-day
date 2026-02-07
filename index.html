@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>For My Love Lenona 🌹</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 600px;
+      padding: 20px;
+      text-align: center;
+      animation: fadeIn 1.5s ease;
+    }
+
+    h1 {
+      color: #be123c;
+      margin-bottom: 10px;
+    }
+
+    .photo {
+      width: 100%;
+      max-width: 350px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      margin: 20px 0;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.9);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      margin-top: 20px;
+    }
+
+    p {
+      color: #333;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    .from {
+      margin-top: 16px;
+      font-weight: bold;
+      color: #be123c;
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      color: #e11d48;
+      font-size: 20px;
+      animation: rise 6s linear infinite;
+      opacity: 0.8;
+    }
+
+    iframe {
+      margin-top: 20px;
+      border-radius: 12px;
+      max-width: 100%;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes rise {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-110vh); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>My Love, Lenona ❤️</h1>
+
+    <!-- Your photo -->
+    <img src="photo.jpg" alt="Us" class="photo" />
+
+    <div class="card">
+      <p>
+        Before you came into my life, I was okay… but something was missing.  
+        Then you arrived, and suddenly everything felt lighter, warmer, more alive.
+      </p>
+      <p>
+        You didn’t just become a part of my world — you became my world.  
+        Your smile is my favorite place, your voice is my comfort, and your love is my strength.
+      </p>
+      <p>
+        Like in that song — before I met you, things were kinda heavy…  
+        but you brought me to life. And now, every February, every day, every moment —  
+        you’ll always be my Valentine. 🌹
+      </p>
+
+      <div class="from">
+        Forever yours,<br/>
+        Kuldeep
+      </div>
+    </div>
+
+    <!-- YouTube embed of Teenage Dream -->
+    <div>
+      <p style="margin-top:20px; color:#be123c; font-weight:bold;">
+        Our song 💖
+      </p>
+      <iframe width="360" height="215"
+        src="https://www.youtube.com/embed/98WtmW-lfeE"
+        title="Teenage Dream - Katy Perry"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+  <script>
+    // Floating hearts animation
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (16 + Math.random() * 20) + "px";
+      heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 7000);
+    }
+
+    setInterval(createHeart, 500);
+  </script>
+
+</body>
+</html>
