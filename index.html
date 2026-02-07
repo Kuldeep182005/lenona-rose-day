@@ -11,17 +11,15 @@
       min-height: 100vh;
       font-family: "Segoe UI", sans-serif;
       background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
+      overflow-y: auto; /* ✅ allow scrolling */
     }
 
     .container {
       max-width: 600px;
       padding: 20px;
+      margin: 0 auto;
       text-align: center;
-      animation: fadeIn 1.5s ease;
+      animation: fadeIn 1.2s ease;
       position: relative;
       z-index: 2;
     }
@@ -41,7 +39,7 @@
     }
 
     .card {
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.92);
       border-radius: 20px;
       padding: 20px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
@@ -60,17 +58,18 @@
       color: #be123c;
     }
 
-    /* Floating hearts */
+    /* ❤️ Better looking hearts */
     .heart {
       position: fixed;
       bottom: -60px;
-      width: 40px;
-      height: 40px;
-      transform: rotate(45deg);
+      width: 28px;
+      height: 28px;
       background: #e11d48;
+      transform: rotate(45deg);
       animation: rise linear forwards;
       opacity: 0.9;
       z-index: 1;
+      border-radius: 6px;
       pointer-events: none;
     }
 
@@ -78,14 +77,14 @@
     .heart::after {
       content: "";
       position: absolute;
-      width: 40px;
-      height: 40px;
+      width: 28px;
+      height: 28px;
       background: #e11d48;
       border-radius: 50%;
     }
 
-    .heart::before { top: -20px; left: 0; }
-    .heart::after { left: -20px; top: 0; }
+    .heart::before { top: -14px; left: 0; }
+    .heart::after { left: -14px; top: 0; }
 
     /* Heart with image inside */
     .heart.image-heart {
@@ -101,7 +100,7 @@
       height: 100%;
       object-fit: cover;
       transform: rotate(-45deg) scale(1.4);
-      border-radius: 10px;
+      border-radius: 6px;
     }
 
     @keyframes float {
@@ -110,13 +109,13 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
+      from { opacity: 0; transform: scale(0.96); }
       to { opacity: 1; transform: scale(1); }
     }
 
     @keyframes rise {
       from { transform: translateY(0) rotate(45deg); opacity: 1; }
-      to { transform: translateY(-110vh) rotate(45deg); opacity: 0; }
+      to { transform: translateY(-120vh) rotate(45deg); opacity: 0; }
     }
 
     .hint {
@@ -124,7 +123,7 @@
       bottom: 10px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(255,255,255,0.85);
+      background: rgba(255,255,255,0.9);
       padding: 8px 14px;
       border-radius: 16px;
       font-size: 13px;
@@ -168,11 +167,11 @@
 
   <div class="hint">Tap anywhere to start our song 🎵</div>
 
-  <!-- Background music (loops your clipped part) -->
+  <!-- Background music -->
   <audio id="bgMusic" src="song.mp3" loop></audio>
 
   <script>
-    // Start music on first user interaction (tap/click)
+    // Start music on first user interaction
     let started = false;
     function startMusicOnce() {
       if (started) return;
@@ -191,19 +190,19 @@
     // Create floating hearts (some with your image inside)
     function createHeart() {
       const heart = document.createElement("div");
-      const isImageHeart = Math.random() < 0.35; // 35% hearts have the photo
+      const isImageHeart = Math.random() < 0.3; // 30% photo hearts
 
       heart.className = "heart";
       heart.style.left = Math.random() * 100 + "vw";
-      const size = 20 + Math.random() * 30;
+      const size = 18 + Math.random() * 24;
       heart.style.width = size + "px";
       heart.style.height = size + "px";
-      heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+      heart.style.animationDuration = (6 + Math.random() * 6) + "s";
 
       if (isImageHeart) {
         heart.classList.add("image-heart");
         const img = document.createElement("img");
-        img.src = "photo.jpg"; // matches your repo file
+        img.src = "photo.jpg";
         heart.appendChild(img);
       }
 
@@ -211,10 +210,10 @@
 
       setTimeout(() => {
         heart.remove();
-      }, 10000);
+      }, 12000);
     }
 
-    setInterval(createHeart, 450); // a bit more frequent
+    setInterval(createHeart, 500);
   </script>
 
 </body>
