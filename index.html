@@ -14,6 +14,52 @@
       overflow-y: auto;
     }
 
+    /* ---------- First Screen ---------- */
+    .intro {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      z-index: 10;
+    }
+
+    .intro h1 {
+      color: #be123c;
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+
+    .intro .btns {
+      display: flex;
+      gap: 20px;
+      position: relative;
+    }
+
+    .btn {
+      padding: 12px 22px;
+      border: none;
+      border-radius: 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .yes-btn {
+      background: #e11d48;
+      color: white;
+    }
+
+    .no-btn {
+      background: #fff;
+      color: #be123c;
+      position: absolute;
+      left: 120px;
+    }
+
+    /* ---------- Main Content ---------- */
     .container {
       max-width: 600px;
       padding: 20px;
@@ -22,6 +68,7 @@
       animation: fadeIn 1.2s ease;
       position: relative;
       z-index: 2;
+      display: none; /* hidden until Yes is clicked */
     }
 
     h1 { color: #be123c; }
@@ -48,7 +95,7 @@
     .from { margin-top: 16px; font-weight: bold; color: #be123c; }
 
     .play-btn {
-      margin: 16px auto 0;
+      margin-top: 14px;
       padding: 12px 20px;
       border: none;
       border-radius: 20px;
@@ -58,7 +105,7 @@
       cursor: pointer;
     }
 
-    /* Hearts */
+    /* ---------- Hearts ---------- */
     .heart {
       position: fixed;
       bottom: -60px;
@@ -113,7 +160,17 @@
 </head>
 <body>
 
-  <div class="container">
+  <!-- First interaction screen -->
+  <div class="intro" id="intro">
+    <h1>Will you be my Valentine? 💖</h1>
+    <div class="btns">
+      <button class="btn yes-btn" onclick="startLove()">Yes ❤️</button>
+      <button class="btn no-btn" id="noBtn">No 🙈</button>
+    </div>
+  </div>
+
+  <!-- Main page -->
+  <div class="container" id="mainContent">
     <h1>My Love, Leona ❤️</h1>
 
     <img src="photo.jpg" alt="Us" class="photo" />
@@ -147,12 +204,30 @@
   <audio id="bgMusic" src="song.mp3" loop></audio>
 
   <script>
+    // Make "No" button run away
+    const noBtn = document.getElementById("noBtn");
+    noBtn.addEventListener("mouseenter", moveNo);
+    noBtn.addEventListener("click", moveNo);
+
+    function moveNo() {
+      const x = Math.random() * 200 - 100;
+      const y = Math.random() * 200 - 100;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    // When Yes is clicked
+    function startLove() {
+      document.getElementById("intro").style.display = "none";
+      document.getElementById("mainContent").style.display = "block";
+    }
+
+    // Play music
     function playMusic() {
       const music = document.getElementById("bgMusic");
-      music.volume = 1.0;
       music.play();
     }
 
+    // Hearts animation
     function createHeart() {
       const heart = document.createElement("div");
       const isImageHeart = Math.random() < 0.3;
